@@ -1,0 +1,7 @@
+.app-input--valid {
+  background-color: blue;
+}
+
+.app-input--invalid {
+  background-color: red;
+}
