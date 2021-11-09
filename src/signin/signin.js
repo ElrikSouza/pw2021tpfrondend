@@ -19,6 +19,7 @@ export const SignInPage = () => {
         onChange={signIn.onChangeSenha}
         errors={signIn.senhaErrors}
         isValid={signIn.senhaIsValid}
+        type="password"
       />
       <AppButton onClick={signIn.submit} disabled={signIn.formDisabled}>
         Fazer Login
