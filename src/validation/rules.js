@@ -14,3 +14,7 @@ export const minLengthRule = (minLength, errorMsg) => {
 export const isEmailRule = (errorMsg) => {
   return buildValidationRule((value) => emailRegex.test(value), errorMsg);
 };
+
+export const equalsTo = (errorMsg, source) => {
+  return buildValidationRule((value) => value === source(), errorMsg);
+};
