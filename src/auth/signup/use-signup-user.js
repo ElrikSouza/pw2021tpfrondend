@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getApiPrefix } from "../helpers/api-prefix";
+import { getApiPrefix } from "../../helpers/api-prefix";
 import { useSignUpForm } from "./use-signup-form";
 
 export const useSignUpUser = () => {

@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from "react";
-import { useFormDisabled } from "../hooks/use-form-disabled";
-import { useFormField } from "../hooks/use-formfield";
-import { equalsTo, maxLengthRule, minLengthRule } from "../validation/rules";
-import { buildValidator } from "../validation/validator";
+import { useFormDisabled } from "../../hooks/use-form-disabled";
+import { useFormField } from "../../hooks/use-formfield";
+import { equalsTo, maxLengthRule, minLengthRule } from "../../validation/rules";
+import { buildValidator } from "../../validation/validator";
 import {
   emailValidator,
   nameValidator,
   passwordValidator,
-} from "../validation/validators";
+} from "../../validation/validators";
 
 export const useSignUpForm = () => {
   const {

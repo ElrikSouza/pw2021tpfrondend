@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { SignInPage } from "./auth/signin/signin";
 import { CreateProductPage } from "./products/create/create-product";
 import { ProductsIndexPage } from "./products/index/index-products";
-import { ShowProductPage } from "./products/show-product";
-import { SignInPage } from "./signin/signin";
-import { SignUpUserPage } from "./signup/signup-user";
+import { ShowProductPage } from "./products/show/show-product";
+import { SignUpUserPage } from "./auth/signup/signup-user";
 
 export const App = () => (
   <div>

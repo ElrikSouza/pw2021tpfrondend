@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart } from "../shopping-cart/shopping-cart";
+import { ShoppingCart } from "../../shopping-cart/shopping-cart";
 
 export const useAddToCart = (productId) => {
   const [quantity, setQuantity] = useState(0);

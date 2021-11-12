@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useFormFieldWithoutValidation } from "../hooks/use-formfield";
-import { ShoppingCart } from "../shopping-cart/shopping-cart";
+import { useFormFieldWithoutValidation } from "../../hooks/use-formfield";
+import { ShoppingCart } from "../../shopping-cart/shopping-cart";
 import { QuantitySelector } from "./quantity-selector";
 import { useAddToCart } from "./use-add-to-cart";
 import { useShowProduct } from "./use-show-product";

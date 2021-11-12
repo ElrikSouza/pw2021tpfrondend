@@ -1,7 +1,7 @@
 import React from "react";
 import { Pagination } from "../../components/pagination/pagination";
 import { SearchBar } from "../../components/search-bar/search-bar";
-import { ProductCard } from "../product-card";
+import { ProductCard } from "./product-card";
 import { useProductsIndex } from "./use-products-index";
 
 export const ProductsIndexPage = () => {

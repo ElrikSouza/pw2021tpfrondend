@@ -24,3 +24,8 @@ export const callGetProducts = async (productName = "", page = 1) => {
 
   return { products, count };
 };
+
+export const calGetOneProduct = async (productId) => {
+  const result = await axios.get(buildUrl(`products/${productId}`));
+  return result.data.product;
+};

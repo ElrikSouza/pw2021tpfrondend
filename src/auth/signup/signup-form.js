@@ -1,6 +1,6 @@
 import React from "react";
-import { AppButton } from "../components/button/button";
-import { AppInput } from "../components/input/input";
+import { AppButton } from "../../components/button/button";
+import { AppInput } from "../../components/input/input";
 
 export const SignUpForm = ({ useSignUp }) => {
   const signUp = useSignUp();

@@ -1,6 +1,6 @@
 import React from "react";
-import { AppButton } from "../components/button/button";
-import { AppInput } from "../components/input/input";
+import { AppButton } from "../../components/button/button";
+import { AppInput } from "../../components/input/input";
 import { useSignIn } from "./use-signin";
 
 export const SignInPage = () => {
