@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { useFormDisabled } from "../hooks/use-form-disabled";
 import { useFormField } from "../hooks/use-formfield";
 import { equalsTo, maxLengthRule, minLengthRule } from "../validation/rules";
 import { buildValidator } from "../validation/validator";
@@ -14,6 +15,7 @@ export const useSignUpForm = () => {
     onChange: onChangeEmail,
     errors: emailErrors,
     isValid: emailIsValid,
+    wasTouched: emailWasTouched,
   } = useFormField(emailValidator);
 
   const {
@@ -21,19 +23,26 @@ export const useSignUpForm = () => {
     onChange: onChangeSenha,
     errors: senhaErrors,
     isValid: senhaIsValid,
+    wasTouched: senhaWasTouched,
   } = useFormField(passwordValidator);
 
-  const confirmPasswordValidator = buildValidator([
-    minLengthRule(6, "Senha deve ter ao menos 6 caracteres"),
-    maxLengthRule(72, "Senha deve ter ate 72 caracteres"),
-    equalsTo("As senhas devem ser iguais", () => senha),
-  ]);
+  const confirmPasswordValidator = useMemo(
+    () =>
+      buildValidator([
+        minLengthRule(6, "Senha deve ter ao menos 6 caracteres"),
+        maxLengthRule(72, "Senha deve ter ate 72 caracteres"),
+        equalsTo("As senhas devem ser iguais", senha),
+      ]),
+    [senha]
+  );
 
   const {
     value: confirmarSenha,
     onChange: onChangeConfirmarSenha,
     errors: confirmarSenhaErrors,
     isValid: confirmarSenhaIsValid,
+    wasTouched: confirmarSenhaWasTouched,
+    triggerValidation: revalidateConfimarSenha,
   } = useFormField(confirmPasswordValidator);
 
   const {
@@ -41,25 +50,31 @@ export const useSignUpForm = () => {
     onChange: onChangeNome,
     errors: nomeErrors,
     isValid: nomeIsValid,
+    wasTouched: nomeWasTouched,
   } = useFormField(nameValidator);
-
-  const [formDisabled, setFormDisabled] = useState(false);
 
   // Revalidar o campo de confimar senha quando senha muda
   useEffect(() => {
-    if (senha === confirmarSenha && senha === "") {
-      return;
+    if (senhaWasTouched && confirmarSenhaWasTouched) {
+      revalidateConfimarSenha();
     }
+  }, [
+    senha,
+    senhaWasTouched,
+    confirmarSenhaWasTouched,
+    revalidateConfimarSenha,
+  ]);
 
-    onChangeConfirmarSenha({ target: { value: confirmarSenha } });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [senha]);
-
-  useEffect(() => {
-    setFormDisabled(
-      !(nomeIsValid && senhaIsValid && confirmarSenhaIsValid && emailIsValid)
-    );
-  }, [nomeIsValid, senhaIsValid, confirmarSenhaIsValid, emailIsValid]);
+  const { formDisabled } = useFormDisabled([
+    !senhaWasTouched,
+    !emailWasTouched,
+    !nomeWasTouched,
+    !confirmarSenhaWasTouched,
+    !senhaIsValid,
+    !emailIsValid,
+    !nomeIsValid,
+    !confirmarSenhaIsValid,
+  ]);
 
   return {
     email,
