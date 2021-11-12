@@ -1,5 +1,19 @@
 import { useState } from "react";
 
+export const useFormFieldWithoutValidation = (defaultValue = "") => {
+  const [value, setValue] = useState(defaultValue);
+
+  const onChange = ({ target }) => {
+    setValue(target.value);
+  };
+
+  return {
+    value,
+    setValue,
+    onChange,
+  };
+};
+
 export const useFormField = (validator, defaultValue = "") => {
   const [value, setValue] = useState(defaultValue);
   const [errors, setErrors] = useState([]);

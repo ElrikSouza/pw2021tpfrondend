@@ -41,7 +41,9 @@ export const SignUpForm = ({ useSignUp }) => {
         placeholder="Confirmar Senha"
       />
 
-      <AppButton onClick={signUp.submit}>Fazer Cadastro</AppButton>
+      <AppButton onClick={signUp.submit} disabled={signUp.formDisabled}>
+        Fazer Cadastro
+      </AppButton>
     </div>
   );
 };

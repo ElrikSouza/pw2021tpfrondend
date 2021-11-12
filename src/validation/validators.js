@@ -1,4 +1,9 @@
-import { isEmailRule, maxLengthRule, minLengthRule } from "./rules";
+import {
+  isEmailRule,
+  maxLengthRule,
+  minLengthRule,
+  minValueRule,
+} from "./rules";
 import { buildValidator } from "./validator";
 
 export const passwordValidator = buildValidator([
@@ -14,4 +19,8 @@ export const nameValidator = buildValidator([
 export const emailValidator = buildValidator([
   maxLengthRule(255, "Email pode ter apenas ate 255 caracteres"),
   isEmailRule("Email invalido"),
+]);
+
+export const positiveNumberValidator = buildValidator([
+  minValueRule(0, "O numero deve ser positivo"),
 ]);
