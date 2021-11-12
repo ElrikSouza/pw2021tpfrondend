@@ -1,24 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useFormField } from "../hooks/use-formfield";
-import { buildUrl } from "../helpers/build-url";
-
-const buildProductsUrl = (page, productName) => {
-  const url = buildUrl(`products?page=${page}`);
-
-  if (productName != null) {
-    return url + `&nome=${productName}`;
-  }
-
-  return url;
-};
-
-const fetchProducts = async (productName = "", page = 1) => {
-  const result = await axios.get(buildProductsUrl(page, productName));
-  const { products, count } = result.data;
-
-  return { products, count };
-};
+import { useFormField } from "../../hooks/use-formfield";
+import { callGetProducts } from "../products-api";
 
 export const useProductsIndex = () => {
   const [products, setProducts] = useState([]);
@@ -38,7 +20,7 @@ export const useProductsIndex = () => {
 
   useEffect(() => {
     const fetchAndSetProducts = async () => {
-      const result = await fetchProducts();
+      const result = await callGetProducts();
       handleApiResult(result);
       setCurrentPage(1);
     };
@@ -47,20 +29,20 @@ export const useProductsIndex = () => {
   }, []);
 
   const searchProductsByName = async () => {
-    const result = await fetchProducts(searchParam);
+    const result = await callGetProducts(searchParam);
     handleApiResult(result);
     setCurrentPage(1);
     setSearchParamInUse(searchParam);
   };
 
   const changePage = async (page) => {
-    const result = await fetchProducts(searchParamInUse, page);
+    const result = await callGetProducts(searchParamInUse, page);
     handleApiResult(result);
     setCurrentPage(page);
   };
 
   const clearSearch = async () => {
-    const result = await fetchProducts();
+    const result = await callGetProducts();
     handleApiResult(result);
     setCurrentPage(1);
     setSearchParamInUse("");
