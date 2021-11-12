@@ -1,12 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { getApiPrefix } from "../helpers/api-prefix";
-import { getAuthorizationHeader } from "../helpers/get-authorization-header";
-import { useFormField } from "../hooks/use-formfield";
+import { useFormField } from "../../hooks/use-formfield";
 import {
   nameValidator,
   positiveNumberValidator,
-} from "../validation/validators";
+} from "../../validation/validators";
+import { callCreateProduct } from "../products-api";
 
 export const useCreateProduct = () => {
   const {
@@ -37,10 +35,9 @@ export const useCreateProduct = () => {
   }, [nomeIsValid, estoqueIsValid, precoIsValid]);
 
   const submit = async () => {
-    const authoriaztionHeader = await getAuthorizationHeader();
     const product = { nome, preco, estoque };
 
-    await axios.post(getApiPrefix() + "products", product, authoriaztionHeader);
+    await callCreateProduct(product);
   };
 
   return {
