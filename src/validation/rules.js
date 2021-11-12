@@ -16,7 +16,7 @@ export const isEmailRule = (errorMsg) => {
 };
 
 export const equalsTo = (errorMsg, source) => {
-  return buildValidationRule((value) => value === source(), errorMsg);
+  return buildValidationRule((value) => value === source, errorMsg);
 };
 
 export const minValueRule = (minValue, errorMsg) => {
