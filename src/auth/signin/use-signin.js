@@ -1,9 +1,7 @@
-import axios from "axios";
-import { getApiPrefix } from "../../helpers/api-prefix";
 import { useFormDisabled } from "../../hooks/use-form-disabled";
 import { useFormField } from "../../hooks/use-formfield";
-import { store } from "../../storage/storage";
 import { emailValidator, passwordValidator } from "../../validation/validators";
+import { callSignIn } from "../auth-api";
 
 export const useSignIn = () => {
   const {
@@ -30,14 +28,7 @@ export const useSignIn = () => {
   ]);
 
   const submit = async () => {
-    const result = await axios.post(getApiPrefix() + "signin", {
-      email,
-      senha,
-    });
-
-    const { token } = result.data;
-
-    await store.setItem("token", token);
+    await callSignIn({ email, senha });
   };
 
   return {
