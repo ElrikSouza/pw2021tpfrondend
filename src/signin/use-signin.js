@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { getApiPrefix } from "../helpers/api-prefix";
+import { useFormDisabled } from "../hooks/use-form-disabled";
 import { useFormField } from "../hooks/use-formfield";
 import { store } from "../storage/storage";
 import { emailValidator, passwordValidator } from "../validation/validators";
@@ -11,6 +11,7 @@ export const useSignIn = () => {
     onChange: onChangeEmail,
     errors: emailErrors,
     isValid: emailIsValid,
+    wasTouched: emailWasTouched,
   } = useFormField(emailValidator);
 
   const {
@@ -18,13 +19,15 @@ export const useSignIn = () => {
     onChange: onChangeSenha,
     errors: senhaErrors,
     isValid: senhaIsValid,
+    wasTouched: senhaWasTouched,
   } = useFormField(passwordValidator);
 
-  const [formDisabled, setFormDisabled] = useState(true);
-
-  useEffect(() => {
-    setFormDisabled(!(emailIsValid && senhaIsValid));
-  }, [emailIsValid, senhaIsValid]);
+  const { formDisabled } = useFormDisabled([
+    !emailIsValid,
+    !senhaIsValid,
+    !emailWasTouched,
+    !senhaWasTouched,
+  ]);
 
   const submit = async () => {
     const result = await axios.post(getApiPrefix() + "signin", {
