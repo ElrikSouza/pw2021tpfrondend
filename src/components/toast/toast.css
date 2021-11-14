@@ -1,0 +1,19 @@
+.toast {
+  border-radius: 10px;
+  width: 80%;
+  font-size: 1.25rem;
+  max-width: 400px;
+  background-color: #fff;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+}
+
+.toast--visible {
+  display: block;
+}
+
+.toast--error {
+  color: red;
+}
