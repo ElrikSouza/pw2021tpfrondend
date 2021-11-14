@@ -3,7 +3,7 @@ const evalConditionalClassName = (key, boolValues, conditionalClasses) => {
   const classes = conditionalClasses[key];
 
   if (typeof classes == "string") {
-    return classes;
+    return boolVal ? classes : "";
   }
   const [isTrueClass, isFalseClass] = classes;
 
