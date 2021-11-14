@@ -1,6 +1,7 @@
 import React from "react";
 import { AppButton } from "../../components/button/button";
 import { AppInput } from "../../components/input/input";
+import { Toast } from "../../components/toast/toast";
 import { useSignIn } from "./use-signin";
 
 export const SignInPage = () => {
@@ -24,6 +25,12 @@ export const SignInPage = () => {
       <AppButton onClick={signIn.submit} disabled={signIn.formDisabled}>
         Fazer Login
       </AppButton>
+      <Toast
+        handleClose={signIn.handleToastClose}
+        isVisible={signIn.isToastVisible}
+        msg={signIn.toastMsg}
+        state={signIn.toastState}
+      />
     </div>
   );
 };
