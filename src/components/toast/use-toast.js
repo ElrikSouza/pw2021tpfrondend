@@ -3,23 +3,28 @@ import { useDialog } from "../../hooks/use-dialog";
 import { TOAST_STATES } from "./toast";
 
 export const useToast = (intialState = false) => {
-  const { setIsVisible, ...rest } = useDialog(intialState);
+  const {
+    setIsVisible: setIsToastVisible,
+    isVisible: isToastVisible,
+    handleClose: handleToastClose,
+  } = useDialog(intialState);
   const [toastState, setToastState] = useState(TOAST_STATES.INFO);
-  const [msg, setMsg] = useState("");
+  const [toastMsg, setToastMsg] = useState("");
 
   const openToast = useCallback(
     (msg, state) => {
-      setMsg(msg);
+      setToastMsg(msg);
       setToastState(state);
-      setIsVisible(true);
+      setIsToastVisible(true);
     },
-    [setToastState, setMsg, setIsVisible]
+    [setToastState, setToastMsg, setIsToastVisible]
   );
 
   return {
-    ...rest,
     toastState,
-    msg,
+    toastMsg,
     openToast,
+    isToastVisible,
+    handleToastClose,
   };
 };
