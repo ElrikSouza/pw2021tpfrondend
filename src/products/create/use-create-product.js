@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useFileUpload } from "../../hooks/use-file-upload";
 import { useFormField } from "../../hooks/use-formfield";
 import {
   nameValidator,
@@ -28,6 +29,8 @@ export const useCreateProduct = () => {
     isValid: precoIsValid,
   } = useFormField(positiveNumberValidator);
 
+  const { file: photo, onChange: onChangePhoto } = useFileUpload();
+
   const [formDisabled, setFormDisabled] = useState(true);
 
   useEffect(() => {
@@ -35,7 +38,7 @@ export const useCreateProduct = () => {
   }, [nomeIsValid, estoqueIsValid, precoIsValid]);
 
   const submit = async () => {
-    const product = { nome, preco, estoque };
+    const product = { nome, preco, estoque, photo };
 
     await callCreateProduct(product);
   };
@@ -55,6 +58,9 @@ export const useCreateProduct = () => {
     onChangePreco,
     precoErrors,
     precoIsValid,
+
+    photo,
+    onChangePhoto,
 
     formDisabled,
     submit,

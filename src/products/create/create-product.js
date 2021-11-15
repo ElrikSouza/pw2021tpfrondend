@@ -1,5 +1,6 @@
 import React from "react";
 import { AppButton } from "../../components/button/button";
+import { ImageUpload } from "../../components/image-upload/image-upload";
 import { AppInput } from "../../components/input/input";
 import { useCreateProduct } from "./use-create-product";
 
@@ -34,6 +35,11 @@ export const CreateProductPage = () => {
         type="number"
         min="0"
         placeholder="Estoque"
+      />
+
+      <ImageUpload
+        image={createProduct.photo}
+        onChange={createProduct.onChangePhoto}
       />
 
       <AppButton
