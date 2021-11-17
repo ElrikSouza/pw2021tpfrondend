@@ -1,0 +1,16 @@
+.app-button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.app-button--primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.app-button--primary:disabled {
+  background-color: grey;
+  color: #dddddd;
+}
