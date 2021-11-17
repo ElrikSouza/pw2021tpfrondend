@@ -6,6 +6,7 @@ export const useShowProduct = (productId) => {
     nome: "Carregando...",
     preco: 0.0,
     estoque: -1,
+    id: -1,
   });
 
   useEffect(() => {
@@ -17,5 +18,5 @@ export const useShowProduct = (productId) => {
     fetchProduct();
   }, [productId]);
 
-  return { product };
+  return { product, setProduct };
 };

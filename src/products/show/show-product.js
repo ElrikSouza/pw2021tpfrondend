@@ -18,7 +18,7 @@ export const ShowProductPage = () => {
     <div>
       <VisibleToCollaborators>
         <AppButton>Excluir produto</AppButton>
-        <AppButton>Editar produto</AppButton>
+        <Link to={`/edit-products/${productId}`}>Editar produto</Link>
       </VisibleToCollaborators>
 
       <div>{showProduct.product.nome}</div>
@@ -46,7 +46,7 @@ export const ShowProductPage = () => {
       <button onClick={() => kekw.addToCart(showProduct.product, form.value)}>
         Adicionar ao carrinho
       </button>
-      <Link to="/finish-order">Finazliar compra</Link>
+      <Link to="/finish-order">Finalizar compra</Link>
     </div>
   );
 };

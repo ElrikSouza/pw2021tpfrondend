@@ -12,6 +12,7 @@ import { MyCartPage } from "./shopping-cart/my-cart";
 import { AddressForm } from "./address/address";
 import { MustLoginPage } from "./errror-pages/must-login";
 import { FinishOrderPage } from "./order/finish-order/finish-order";
+import { EditProduct } from "./products/edit/edit-product";
 
 export const App = () => (
   <div>
@@ -21,6 +22,7 @@ export const App = () => (
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpUserPage />} />
         <Route path="/products/create" element={<CreateProductPage />} />
+        <Route path="/edit-products/:id" element={<EditProduct />} />
         <Route path="/products/:id" element={<ShowProductPage />} />
         <Route path="/adm" element={<AdmPage />} />
         <Route path="/cart" element={<MyCartPage />} />
