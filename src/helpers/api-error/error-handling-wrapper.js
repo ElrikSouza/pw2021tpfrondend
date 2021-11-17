@@ -4,7 +4,8 @@ export const wrapApiCallWithErrorHandling =
   (call) =>
   async (...args) => {
     try {
-      await call(...args);
+      const result = await call(...args);
+      return result;
     } catch (error) {
       if (error.response) {
         throw new ApiError(error.response.data.message);
