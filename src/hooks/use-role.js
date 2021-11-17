@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { store } from "../storage/storage";
 
 export const useRole = () => {
-  const [role, setRole] = useState("GUEST");
+  const [role, setRole] = useState("LOADING");
 
   useEffect(() => {
     const getRole = async () => {
