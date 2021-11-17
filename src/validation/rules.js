@@ -22,3 +22,7 @@ export const equalsTo = (errorMsg, source) => {
 export const minValueRule = (minValue, errorMsg) => {
   return buildValidationRule((value) => value >= minValue, errorMsg);
 };
+
+export const isInt = (errorMsg) => {
+  return buildValidationRule((value) => Number.isInteger(value), errorMsg);
+};

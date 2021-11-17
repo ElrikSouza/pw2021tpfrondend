@@ -11,10 +11,13 @@ export const passwordValidator = buildValidator([
   maxLengthRule(72, "Nome pode ter ate 72 caracteres."),
 ]);
 
-export const nameValidator = buildValidator([
+const nameRules = [
   minLengthRule(6, "Nome deve ter ao menos 6 caracteres."),
   maxLengthRule(100, "Nome pode ter ate 100 caracteres."),
-]);
+];
+
+export const nameValidator = buildValidator(nameRules);
+export const optionalNameValidator = buildValidator(nameRules, true);
 
 export const emailValidator = buildValidator([
   maxLengthRule(255, "Email pode ter apenas ate 255 caracteres"),
