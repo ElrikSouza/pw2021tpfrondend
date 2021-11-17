@@ -2,10 +2,22 @@ import axios from "axios";
 import { buildUrl } from "../helpers/build-url";
 import { getAuthorizationHeader } from "../helpers/get-authorization-header";
 
-export const callCreateProduct = async (product) => {
-  const authoriaztionHeader = await getAuthorizationHeader();
+const toFormData = (obj) => {
+  const keys = Object.keys(obj);
+  const formData = new FormData();
 
-  await axios.post(buildUrl("products"), product, authoriaztionHeader);
+  for (const key of keys) {
+    formData.append(key, obj[key]);
+  }
+
+  return formData;
+};
+
+export const callCreateProduct = async (product) => {
+  const headers = await getAuthorizationHeader();
+  headers.headers["Content-Type"] = "multipart/form-data";
+
+  await axios.post(buildUrl("products"), toFormData(product), headers);
 };
 
 const buildProductsUrl = (page, productName) => {
@@ -25,7 +37,7 @@ export const callGetProducts = async (productName = "", page = 1) => {
   return { products, count };
 };
 
-export const calGetOneProduct = async (productId) => {
+export const callGetOneProduct = async (productId) => {
   const result = await axios.get(buildUrl(`products/${productId}`));
   return result.data.product;
 };
