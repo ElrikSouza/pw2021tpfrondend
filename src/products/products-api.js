@@ -20,6 +20,17 @@ export const callCreateProduct = async (product) => {
   await axios.post(buildUrl("products"), toFormData(product), headers);
 };
 
+export const callUpdateProduct = async (productId, changes) => {
+  const headers = await getAuthorizationHeader();
+  headers.headers["Content-Type"] = "multipart/form-data";
+
+  await axios.put(
+    buildUrl(`products/${productId}`),
+    toFormData(changes),
+    headers
+  );
+};
+
 const buildProductsUrl = (page, productName) => {
   const url = buildUrl(`products?page=${page}`);
 
