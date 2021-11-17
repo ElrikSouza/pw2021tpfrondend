@@ -15,41 +15,57 @@ export const AddressForm = () => {
     <div>
       <AppInput
         placeholder="CEP"
-        onChange={addressForm.onChangeCep}
-        value={addressForm.cep}
+        onChange={addressForm.cepField.onChange}
+        value={addressForm.cepField.value}
+        isValid={addressForm.cepField.isValid}
+        errors={addressForm.cepField.errors}
       />
 
       <AppInput
         placeholder="Logradouro"
-        onChange={addressForm.onChangeLogradouro}
-        value={addressForm.logradouro}
+        onChange={addressForm.logradouroField.onChange}
+        value={addressForm.logradouroField.value}
+        isValid={addressForm.logradouroField.isValid}
+        errors={addressForm.logradouroField.errors}
       />
 
       <AppInput
         placeholder="Cidade"
-        onChange={addressForm.onChangeCidade}
-        value={addressForm.cidade}
+        onChange={addressForm.cidadeField.onChange}
+        value={addressForm.cidadeField.value}
+        isValid={addressForm.cidadeField.isValid}
+        errors={addressForm.cidadeField.errors}
       />
 
       <AppInput
         placeholder="Bairro"
-        onChange={addressForm.onChangeBairro}
-        value={addressForm.bairro}
+        onChange={addressForm.bairroField.onChange}
+        value={addressForm.bairroField.value}
+        isValid={addressForm.bairroField.isValid}
+        errors={addressForm.bairroField.errors}
       />
 
       <AppInput
         placeholder="Uf"
-        onChange={addressForm.onChangeUf}
-        value={addressForm.uf}
+        onChange={addressForm.ufField.onChange}
+        value={addressForm.ufField.value}
+        isValid={addressForm.ufField.isValid}
+        errors={addressForm.ufField.errors}
       />
 
       <AppInput
         placeholder="Numero"
-        onChange={addressForm.onChangeNumero}
-        value={addressForm.numero}
+        type="number"
+        min="0"
+        onChange={addressForm.numeroField.onChange}
+        value={addressForm.numeroField.value}
+        isValid={addressForm.numeroField.isValid}
+        errors={addressForm.numeroField.errors}
       />
 
-      <button onClick={addressForm.searchViaCep}>search</button>
+      <AppButton onClick={addressForm.searchViaCep}>
+        Procurar pelo CEP
+      </AppButton>
 
       <Toast
         state={addressForm.toastState}

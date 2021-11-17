@@ -27,3 +27,9 @@ export const emailValidator = buildValidator([
 export const positiveNumberValidator = buildValidator([
   minValueRule(0, "O numero deve ser positivo"),
 ]);
+
+export const string255Validator = (isRequired = true) =>
+  buildValidator(
+    [maxLengthRule(255, "Campo deve ter ate 255 caracteres")],
+    isRequired
+  );
