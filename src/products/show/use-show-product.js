@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { callGetProducts } from "../products-api";
+import { callGetOneProduct } from "../products-api";
 
 export const useShowProduct = (productId) => {
   const [product, setProduct] = useState({
@@ -10,7 +10,7 @@ export const useShowProduct = (productId) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const product = await callGetProducts(productId);
+      const product = await callGetOneProduct(productId);
       setProduct(product);
     };
 

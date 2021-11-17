@@ -1,7 +1,9 @@
 import React from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { AppButton } from "../../components/button/button";
+import { VisibleToCollaborators } from "../../components/conditional-render/visible-to-collaborators";
 import { useFormFieldWithoutValidation } from "../../hooks/use-formfield";
-import { ShoppingCart } from "../../shopping-cart/shopping-cart";
 import { QuantitySelector } from "./quantity-selector";
 import { useAddToCart } from "./use-add-to-cart";
 import { useShowProduct } from "./use-show-product";
@@ -14,6 +16,11 @@ export const ShowProductPage = () => {
 
   return (
     <div>
+      <VisibleToCollaborators>
+        <AppButton>Excluir produto</AppButton>
+        <AppButton>Editar produto</AppButton>
+      </VisibleToCollaborators>
+
       <div>{showProduct.product.nome}</div>
       <div>{showProduct.product.preco}</div>
       {showProduct.product.estoque !== 0 ? (
@@ -36,14 +43,10 @@ export const ShowProductPage = () => {
         <div>{kekw.quantity}</div>
       )}
 
-      <button
-        onClick={async () => {
-          await ShoppingCart.addProduct(showProduct.product, form.value);
-          console.log(form.value);
-        }}
-      >
+      <button onClick={() => kekw.addToCart(showProduct.product, form.value)}>
         Adicionar ao carrinho
       </button>
+      <Link to="/finish-order">Finazliar compra</Link>
     </div>
   );
 };

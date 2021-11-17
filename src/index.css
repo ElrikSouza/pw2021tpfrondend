@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #0066ff;
+  --error-color: #fd3030;
+}

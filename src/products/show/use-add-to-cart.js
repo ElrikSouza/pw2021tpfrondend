@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ShoppingCart } from "../../shopping-cart/shopping-cart";
 
 export const useAddToCart = (productId) => {
   const [quantity, setQuantity] = useState(0);
 
-  useEffect(() => {
-    const getProduct = async () => {
-      const product = await ShoppingCart.getProductFromCart(productId);
-      console.log(productId, product);
+  const fetchQuantity = useCallback(async () => {
+    const product = await ShoppingCart.getProductFromCart(productId);
 
-      if (product == null) {
-        setQuantity(0);
-      } else {
-        setQuantity(product.quantity);
-      }
-    };
-
-    getProduct();
+    if (product == null) {
+      setQuantity(0);
+    } else {
+      setQuantity(product.quantity);
+    }
   }, [productId]);
 
-  return { quantity };
+  useEffect(() => {
+    fetchQuantity();
+  }, [fetchQuantity]);
+
+  const addToCart = async (product, value) => {
+    await ShoppingCart.addProduct(product, value);
+    await fetchQuantity();
+  };
+
+  return { quantity, addToCart };
 };
