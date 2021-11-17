@@ -2,6 +2,7 @@ import { TOAST_STATES } from "../../components/toast/toast";
 import { useToast } from "../../components/toast/use-toast";
 import { useFormDisabled } from "../../hooks/use-form-disabled";
 import { useFormField } from "../../hooks/use-formfield";
+import { useRedirectToPreviousPage } from "../../hooks/use-redirect-to-previous-page";
 import { emailValidator, passwordValidator } from "../../validation/validators";
 import { callSignIn } from "../auth-api";
 
@@ -31,9 +32,12 @@ export const useSignIn = () => {
 
   const { openToast, ...toast } = useToast();
 
+  const redirect = useRedirectToPreviousPage();
+
   const submit = async () => {
     try {
       await callSignIn({ email, senha });
+      redirect();
     } catch (error) {
       openToast(error.message, TOAST_STATES.ERROR);
     }

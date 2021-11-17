@@ -14,17 +14,22 @@ export const SignInPage = () => {
         onChange={signIn.onChangeEmail}
         errors={signIn.emailErrors}
         isValid={signIn.emailIsValid}
+        placeholder="Email"
       />
+
       <AppInput
         value={signIn.senha}
         onChange={signIn.onChangeSenha}
         errors={signIn.senhaErrors}
         isValid={signIn.senhaIsValid}
+        placeholder="Senha"
         type="password"
       />
+
       <AppButton onClick={signIn.submit} disabled={signIn.formDisabled}>
         Fazer Login
       </AppButton>
+
       <Toast
         handleClose={signIn.handleToastClose}
         isVisible={signIn.isToastVisible}
