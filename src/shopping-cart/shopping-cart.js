@@ -16,11 +16,8 @@ const getShopppingCart = async () => {
 const getProductFromCart = async (id, cart = null) => {
   const productId = Number.parseInt(id);
   const shoppingCart = cart != null ? cart : await getShopppingCart();
-  console.log(shoppingCart);
 
   const product = shoppingCart.find((entry) => entry.id === productId);
-  console.log(shoppingCart.find((entry) => entry.id === productId));
-  console.log(productId, product);
 
   return product;
 };
@@ -28,7 +25,6 @@ const getProductFromCart = async (id, cart = null) => {
 const addProduct = async (product, quantity) => {
   const shoppingCart = await getShopppingCart();
   const savedProduct = await getProductFromCart(product.id, shoppingCart);
-  console.log(savedProduct);
 
   if (savedProduct) {
     savedProduct.quantity += quantity;
@@ -50,6 +46,8 @@ const removeProduct = async (productId) => {
   );
 
   await store.setItem(key, shoppingCartAfter);
+
+  return shoppingCartAfter;
 };
 
 export const ShoppingCart = {
