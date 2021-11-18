@@ -1,5 +1,6 @@
 import React from "react";
 import { AppButton } from "../../components/button/button";
+import { FormLayout } from "../../components/form-layout/form-layout";
 import { ImageUpload } from "../../components/image-upload/image-upload";
 import { AppInput } from "../../components/input/input";
 import { useCreateProduct } from "./use-create-product";
@@ -8,7 +9,7 @@ export const CreateProductPage = () => {
   const createProduct = useCreateProduct();
 
   return (
-    <div>
+    <FormLayout>
       <AppInput
         value={createProduct.nome}
         onChange={createProduct.onChangeNome}
@@ -48,6 +49,6 @@ export const CreateProductPage = () => {
       >
         Fazer cadastro
       </AppButton>
-    </div>
+    </FormLayout>
   );
 };

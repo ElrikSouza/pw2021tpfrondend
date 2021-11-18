@@ -1,4 +1,5 @@
 import { AppButton } from "../../components/button/button";
+import { FormLayout } from "../../components/form-layout/form-layout";
 import { AppInput } from "../../components/input/input";
 import { Toast } from "../../components/toast/toast";
 import { useEditProduct } from "./use-edit-product";
@@ -7,7 +8,7 @@ export const EditProduct = () => {
   const editProduct = useEditProduct();
 
   return (
-    <div>
+    <FormLayout>
       <AppInput
         placeholder="Nome"
         errors={editProduct.nomeField.errors}
@@ -45,6 +46,6 @@ export const EditProduct = () => {
         msg={editProduct.toast.toastMsg}
         state={editProduct.toast.toastState}
       />
-    </div>
+    </FormLayout>
   );
 };
