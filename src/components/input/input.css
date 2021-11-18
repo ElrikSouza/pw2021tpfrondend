@@ -5,6 +5,7 @@
   transition: 300ms border-color, 300ms border-width;
   font-size: 1rem;
   border-radius: 5px;
+  width: 100%;
 }
 
 .app-input:hover,
