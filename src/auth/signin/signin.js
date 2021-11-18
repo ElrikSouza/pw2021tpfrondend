@@ -1,5 +1,6 @@
 import React from "react";
 import { AppButton } from "../../components/button/button";
+import { FormLayout } from "../../components/form-layout/form-layout";
 import { AppInput } from "../../components/input/input";
 import { Toast } from "../../components/toast/toast";
 import { useSignIn } from "./use-signin";
@@ -8,7 +9,7 @@ export const SignInPage = () => {
   const signIn = useSignIn();
 
   return (
-    <div>
+    <FormLayout>
       <AppInput
         value={signIn.email}
         onChange={signIn.onChangeEmail}
@@ -36,6 +37,6 @@ export const SignInPage = () => {
         msg={signIn.toastMsg}
         state={signIn.toastState}
       />
-    </div>
+    </FormLayout>
   );
 };

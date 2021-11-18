@@ -1,12 +1,14 @@
 import React from "react";
 import { AppButton } from "../../components/button/button";
+import { FormLayout } from "../../components/form-layout/form-layout";
 import { AppInput } from "../../components/input/input";
+import { Toast } from "../../components/toast/toast";
 
 export const SignUpForm = ({ useSignUp }) => {
   const signUp = useSignUp();
 
   return (
-    <div>
+    <FormLayout>
       <AppInput
         value={signUp.nome}
         onChange={signUp.onChangeNome}
@@ -44,6 +46,13 @@ export const SignUpForm = ({ useSignUp }) => {
       <AppButton onClick={signUp.submit} disabled={signUp.formDisabled}>
         Fazer Cadastro
       </AppButton>
-    </div>
+
+      <Toast
+        handleClose={signUp.toast.handleToastClose}
+        isVisible={signUp.toast.isToastVisible}
+        msg={signUp.toast.toastMsg}
+        state={signUp.toast.toastState}
+      />
+    </FormLayout>
   );
 };
