@@ -1,0 +1,31 @@
+.product-card {
+  display: grid;
+  grid-template-areas: "img img" "nome nome" "preco link";
+  font-size: 1.25rem;
+  max-width: 600px;
+  background-color: white;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.185);
+  border-radius: 10px;
+}
+
+.product-card_nome {
+  grid-area: nome;
+  font-weight: 600;
+}
+
+.product-card_preco {
+  grid-area: preco;
+  font-weight: 600;
+}
+
+.product-card_link {
+  grid-area: link;
+  opacity: 0.7;
+}
+
+.product-card_img {
+  grid-area: img;
+  max-width: 500px;
+  max-height: 280px;
+  margin: auto;
+}
