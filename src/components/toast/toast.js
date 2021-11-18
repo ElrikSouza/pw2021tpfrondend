@@ -6,7 +6,7 @@ import { AppButton } from "../button/button";
 
 export const TOAST_STATES = {
   INFO: Symbol("info"),
-  ERROR: Symbol("info"),
+  ERROR: Symbol("error"),
 };
 
 const useToastClassname = classNameBuilder(
