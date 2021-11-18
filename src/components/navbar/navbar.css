@@ -1,7 +1,7 @@
 .navbar {
   width: 100%;
   background-color: black;
-  height: 3.25rem;
+  height: var(--navbar-size);
   padding: 0.25rem;
   display: flex;
   flex-flow: row nowrap;
