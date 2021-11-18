@@ -3,17 +3,35 @@
   width: 80%;
   font-size: 1.25rem;
   max-width: 400px;
-  background-color: #fff;
+  background-color: #fff4f4;
+  box-shadow: 1px 1px 8px #4949493f;
   display: none;
   position: fixed;
   bottom: 0;
-  margin: auto;
+  margin: 2rem;
+  padding: 0.5rem;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .toast--visible {
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  animation: fade-in 300ms linear;
+  justify-content: space-around;
 }
 
 .toast--error {
   color: red;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
