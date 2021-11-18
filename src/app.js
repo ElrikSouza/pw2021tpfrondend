@@ -13,14 +13,19 @@ import { AddressForm } from "./address/address";
 import { MustLoginPage } from "./errror-pages/must-login";
 import { FinishOrderPage } from "./order/finish-order/finish-order";
 import { EditProduct } from "./products/edit/edit-product";
+import { SignUpCollaboratorPage } from "./auth/signup/sign-up-collab";
 
 export const App = () => (
   <div>
-    <Router>
+    <Router className="root">
       <NavBar />
       <Routes>
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpUserPage />} />
+        <Route
+          path="/collaborators/create"
+          element={<SignUpCollaboratorPage />}
+        />
         <Route path="/products/create" element={<CreateProductPage />} />
         <Route path="/edit-products/:id" element={<EditProduct />} />
         <Route path="/products/:id" element={<ShowProductPage />} />
