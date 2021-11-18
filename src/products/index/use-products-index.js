@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFormField } from "../../hooks/use-formfield";
+import { useFormFieldWithoutValidation } from "../../hooks/use-formfield";
 import { callGetProducts } from "../products-api";
 
 export const useProductsIndex = () => {
@@ -7,10 +7,11 @@ export const useProductsIndex = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [searchParamInUse, setSearchParamInUse] = useState("");
-  const { onChange: onChangeSearchParam, value: searchParam } = useFormField(
-    () => [],
-    ""
-  );
+  const {
+    onChange: onChangeSearchParam,
+    value: searchParam,
+    setValue: setSearchParam,
+  } = useFormFieldWithoutValidation();
 
   const handleApiResult = ({ products, count }) => {
     const newNumOfPages = Math.ceil(count / 10);
@@ -46,6 +47,7 @@ export const useProductsIndex = () => {
     handleApiResult(result);
     setCurrentPage(1);
     setSearchParamInUse("");
+    setSearchParam("");
   };
 
   return {
