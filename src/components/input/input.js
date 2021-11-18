@@ -14,9 +14,10 @@ export const AppInput = ({
   theme = "primary",
   errors,
   isValid,
+  className = "",
   ...props
 }) => {
-  const className = useInputClassname(theme, { isValid });
+  const finalClassname = useInputClassname(theme, { isValid }, className);
 
   return (
     <div>
@@ -24,7 +25,7 @@ export const AppInput = ({
       <input
         value={value}
         onChange={onChange}
-        className={className}
+        className={finalClassname}
         {...props}
       />
     </div>

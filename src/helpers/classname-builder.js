@@ -11,8 +11,8 @@ const evalConditionalClassName = (key, boolValues, conditionalClasses) => {
 };
 
 export const classNameBuilder = (baseClass, themes, conditionalClasses) => {
-  return (theme, boolValues = {}) => {
-    const classNames = [baseClass];
+  return (theme, boolValues = {}, extraClasses = "") => {
+    const classNames = [baseClass, extraClasses];
 
     classNames.push(themes[theme]);
 
