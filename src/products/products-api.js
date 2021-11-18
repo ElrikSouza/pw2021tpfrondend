@@ -1,4 +1,5 @@
 import axios from "axios";
+import { wrapApiCallWithErrorHandling } from "../helpers/api-error/error-handling-wrapper";
 import { buildUrl } from "../helpers/build-url";
 import { getAuthorizationHeader } from "../helpers/get-authorization-header";
 
@@ -13,23 +14,27 @@ const toFormData = (obj) => {
   return formData;
 };
 
-export const callCreateProduct = async (product) => {
-  const headers = await getAuthorizationHeader();
-  headers.headers["Content-Type"] = "multipart/form-data";
+export const callCreateProduct = wrapApiCallWithErrorHandling(
+  async (product) => {
+    const headers = await getAuthorizationHeader();
+    headers.headers["Content-Type"] = "multipart/form-data";
 
-  await axios.post(buildUrl("products"), toFormData(product), headers);
-};
+    await axios.post(buildUrl("products"), toFormData(product), headers);
+  }
+);
 
-export const callUpdateProduct = async (productId, changes) => {
-  const headers = await getAuthorizationHeader();
-  headers.headers["Content-Type"] = "multipart/form-data";
+export const callUpdateProduct = wrapApiCallWithErrorHandling(
+  async (productId, changes) => {
+    const headers = await getAuthorizationHeader();
+    headers.headers["Content-Type"] = "multipart/form-data";
 
-  await axios.put(
-    buildUrl(`products/${productId}`),
-    toFormData(changes),
-    headers
-  );
-};
+    await axios.put(
+      buildUrl(`products/${productId}`),
+      toFormData(changes),
+      headers
+    );
+  }
+);
 
 const buildProductsUrl = (page, productName) => {
   const url = buildUrl(`products?page=${page}`);

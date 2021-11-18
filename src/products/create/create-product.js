@@ -3,6 +3,7 @@ import { AppButton } from "../../components/button/button";
 import { FormLayout } from "../../components/form-layout/form-layout";
 import { ImageUpload } from "../../components/image-upload/image-upload";
 import { AppInput } from "../../components/input/input";
+import { Toast } from "../../components/toast/toast";
 import { useCreateProduct } from "./use-create-product";
 
 export const CreateProductPage = () => {
@@ -49,6 +50,13 @@ export const CreateProductPage = () => {
       >
         Fazer cadastro
       </AppButton>
+
+      <Toast
+        handleClose={createProduct.toast.handleToastClose}
+        isVisible={createProduct.toast.isToastVisible}
+        msg={createProduct.toast.toastMsg}
+        state={createProduct.toast.toastState}
+      />
     </FormLayout>
   );
 };

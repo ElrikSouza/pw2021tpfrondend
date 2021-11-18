@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { TOAST_STATES } from "../../components/toast/toast";
+import { useToast } from "../../components/toast/use-toast";
 import { useFileUpload } from "../../hooks/use-file-upload";
 import { useFormField } from "../../hooks/use-formfield";
 import {
@@ -37,10 +39,17 @@ export const useCreateProduct = () => {
     setFormDisabled(!(nomeIsValid && estoqueIsValid && precoIsValid));
   }, [nomeIsValid, estoqueIsValid, precoIsValid]);
 
-  const submit = async () => {
-    const product = { nome, preco, estoque, photo };
+  const { openToast, ...toast } = useToast();
 
-    await callCreateProduct(product);
+  const submit = async () => {
+    try {
+      const product = { nome, preco, estoque, photo };
+
+      await callCreateProduct(product);
+      openToast("Produto criado.", TOAST_STATES.INFO);
+    } catch (error) {
+      openToast(error.message, TOAST_STATES.ERROR);
+    }
   };
 
   return {
@@ -64,5 +73,6 @@ export const useCreateProduct = () => {
 
     formDisabled,
     submit,
+    toast,
   };
 };
