@@ -1,0 +1,26 @@
+.navbar {
+  width: 100%;
+  background-color: black;
+  height: 3.25rem;
+  padding: 0.25rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar a,
+.navbar-link-btn {
+  color: white;
+  font-size: 1rem;
+  display: inline-block;
+  background: 0;
+  outline: 0;
+  border: 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar-link--active {
+  text-shadow: 2px 2px 4px #ffffff;
+}
