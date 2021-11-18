@@ -43,6 +43,7 @@ export const EditProduct = () => {
         handleClose={editProduct.toast.handleToastClose}
         isVisible={editProduct.toast.isToastVisible}
         msg={editProduct.toast.toastMsg}
+        state={editProduct.toast.toastState}
       />
     </div>
   );
