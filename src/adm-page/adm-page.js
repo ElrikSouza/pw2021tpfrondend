@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { AppButtonLink } from "../components/button/button";
+import { FormLayout } from "../components/form-layout/form-layout";
 
 export const AdmPage = () => (
-  <div>
-    <Link to="/products/create">Criar um produto</Link>
-    <Link to="/collaborators/create">Cadastrar um novo colaborador</Link>
-  </div>
+  <FormLayout>
+    <AppButtonLink to="/products/create">Criar um produto</AppButtonLink>
+    <AppButtonLink to="/collaborators/create">
+      Cadastrar um novo colaborador
+    </AppButtonLink>
+  </FormLayout>
 );

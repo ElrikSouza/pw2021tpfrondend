@@ -57,3 +57,8 @@ export const callGetOneProduct = async (productId) => {
   const result = await axios.get(buildUrl(`products/${productId}`));
   return result.data.product;
 };
+
+export const callDeleteProduct = async (productId) => {
+  const headers = await getAuthorizationHeader();
+  await axios.delete(buildUrl(`products/${productId}`), headers);
+};

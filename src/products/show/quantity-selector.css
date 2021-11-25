@@ -1,0 +1,6 @@
+.quantity-selector {
+  max-width: 150px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.25rem;
+}

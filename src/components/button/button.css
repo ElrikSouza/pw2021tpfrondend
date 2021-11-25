@@ -3,6 +3,14 @@
   font-size: 1rem;
   border-radius: 5px;
   border: none;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  display: inline-block;
+}
+
+a.app-button {
+  align-self: center;
 }
 
 .app-button--primary {

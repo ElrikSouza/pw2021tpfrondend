@@ -1,4 +1,6 @@
 import React from "react";
+import { AppButton } from "../components/button/button";
+import { ShoppingCartRow } from "../products/shopping-cart-row";
 import { useCart } from "./use-cart";
 
 export const MyCartPage = () => {
@@ -6,12 +8,9 @@ export const MyCartPage = () => {
 
   return (
     <ul>
-      <button onClick={clearCart}>Esvaziar carrinho</button>
+      <AppButton onClick={clearCart}>Esvaziar carrinho</AppButton>
       {products.map((product) => (
-        <div>
-          x{product.quantity} {product.nome} por{" "}
-          {product.preco * product.quantity}R$
-        </div>
+        <ShoppingCartRow product={product} />
       ))}
     </ul>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { AppButton } from "../components/button/button";
+import { FormLayout } from "../components/form-layout/form-layout";
 import { AppInput } from "../components/input/input";
 import { Toast } from "../components/toast/toast";
 import { useLocationRedirect } from "../hooks/use-location-redirect";
@@ -12,7 +13,7 @@ export const AddressForm = () => {
   useRoleGuard(["ADM", "USER"]);
 
   return (
-    <div>
+    <FormLayout>
       <AppInput
         placeholder="CEP"
         onChange={addressForm.cepField.onChange}
@@ -75,6 +76,6 @@ export const AddressForm = () => {
       />
 
       <AppButton onClick={addressForm.submit}>Cadastrar endereco</AppButton>
-    </div>
+    </FormLayout>
   );
 };

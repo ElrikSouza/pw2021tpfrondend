@@ -1,52 +1,63 @@
 import React from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
-import { AppButton } from "../../components/button/button";
+import { AppButton, AppButtonLink } from "../../components/button/button";
 import { VisibleToCollaborators } from "../../components/conditional-render/visible-to-collaborators";
+import { FormLayout } from "../../components/form-layout/form-layout";
 import { useFormFieldWithoutValidation } from "../../hooks/use-formfield";
+import { useResourceId } from "../../hooks/use-resource-id";
+import { ProductImage } from "../product-img/product-image";
 import { QuantitySelector } from "./quantity-selector";
 import { useAddToCart } from "./use-add-to-cart";
+import { useDeleteProduct } from "./use-delete-product";
 import { useShowProduct } from "./use-show-product";
 
 export const ShowProductPage = () => {
-  const { id: productId } = useParams();
+  const productId = useResourceId();
   const showProduct = useShowProduct(productId);
   const form = useFormFieldWithoutValidation(0);
-  const kekw = useAddToCart(productId);
+  const cart = useAddToCart(productId);
+  const deleteProduct = useDeleteProduct(productId);
 
   return (
-    <div>
+    <FormLayout>
       <VisibleToCollaborators>
-        <AppButton>Excluir produto</AppButton>
-        <Link to={`/edit-products/${productId}`}>Editar produto</Link>
+        <AppButton onClick={deleteProduct}>Excluir produto</AppButton>
+        <AppButtonLink to={`/edit-products/${productId}`}>
+          Editar produto
+        </AppButtonLink>
       </VisibleToCollaborators>
 
+      <ProductImage imgId={showProduct.product.img_filename} />
+
       <div>{showProduct.product.nome}</div>
+
       <div>{showProduct.product.preco}</div>
+
       {showProduct.product.estoque !== 0 ? (
         <div>Produto disponivel</div>
       ) : (
         <div>Sem estoque</div>
       )}
+
       <QuantitySelector
         max={showProduct.product.estoque}
         quantity={form.value}
         setQuantity={form.setValue}
         onChange={form.onChange}
       />
-      {kekw.quantity !== 0 ? (
+
+      {cart.quantity !== 0 && (
         <div>
-          Vc ja tem {kekw.quantity} no carrinho, deseja adicionar {form.value} a
-          mais ?{" "}
+          Você já tem {cart.quantity} no carrinho, deseja adicionar {form.value}{" "}
+          a mais ?
         </div>
-      ) : (
-        <div>{kekw.quantity}</div>
       )}
 
-      <button onClick={() => kekw.addToCart(showProduct.product, form.value)}>
+      <AppButton
+        onClick={() => cart.addToCart(showProduct.product, form.value)}
+      >
         Adicionar ao carrinho
-      </button>
-      <Link to="/finish-order">Finalizar compra</Link>
-    </div>
+      </AppButton>
+      <AppButtonLink to="/finish-order">Finalizar compra</AppButtonLink>
+    </FormLayout>
   );
 };

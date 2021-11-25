@@ -1,0 +1,5 @@
+.address-selector {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+}

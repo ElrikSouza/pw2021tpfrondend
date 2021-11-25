@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./select.css";
 
 export const SelectInput = ({ options, value, setValue, onChange }) => {
   const optionTags = options.map((optionVal) => (
@@ -18,7 +19,7 @@ export const SelectInput = ({ options, value, setValue, onChange }) => {
   }, [setValue, defaultValue]);
 
   return (
-    <select value={value} onChange={onChange}>
+    <select className="select-box" value={value} onChange={onChange}>
       {optionTags}
     </select>
   );
