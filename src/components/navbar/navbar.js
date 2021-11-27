@@ -5,9 +5,6 @@ import { usePathnameSensitiveRole } from "./use-pathname-role";
 import { NavbarDrawer } from "./navbar-drawer";
 import { NavBarLinks } from "./navbar-links";
 import "./navbar.css";
-import { NavbarDrawer } from "./navbar-drawer";
-import { NavBarLinks } from "./navbar-links";
-import { useDialog } from "../../hooks/use-dialog";
 
 export const NavBar = () => {
   const role = usePathnameSensitiveRole();
