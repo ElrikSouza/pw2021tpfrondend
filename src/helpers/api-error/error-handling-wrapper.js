@@ -8,7 +8,7 @@ export const wrapApiCallWithErrorHandling =
       return result;
     } catch (error) {
       if (error.response) {
-        throw new ApiError(error.response.data.message);
+        throw new ApiError(error.response.data.message, error.response.status);
       }
       throw new ApiError("Um erro nao identificado ocorreu.");
     }

@@ -75,7 +75,7 @@ export const AddressForm = () => {
         msg={addressForm.toastMsg}
       />
 
-      <AppButton onClick={addressForm.submit}>Cadastrar endereco</AppButton>
+      <AppButton onClick={addressForm.submit}>Cadastrar endereço</AppButton>
     </FormLayout>
   );
 };

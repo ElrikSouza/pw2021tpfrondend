@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLogout } from "../hooks/use-logout";
 import { callGetAddresses } from "./address-api";
 
 export const useGetAddresses = (isAuthenticated = true) => {
   const [addresses, setAddresses] = useState([]);
+  const handleLogOut = useLogout();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -10,11 +12,17 @@ export const useGetAddresses = (isAuthenticated = true) => {
     }
 
     const fetchAddresses = async () => {
-      const result = await callGetAddresses();
-      setAddresses(result.addresses);
+      try {
+        const result = await callGetAddresses();
+        setAddresses(result.addresses);
+      } catch (error) {
+        if (error.status && error.status === 401) {
+          handleLogOut();
+        }
+      }
     };
     fetchAddresses();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, handleLogOut]);
 
   return { addresses };
 };

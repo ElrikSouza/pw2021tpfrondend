@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { callGetOneProduct } from "../products-api";
 
 export const useShowProduct = (productId) => {
@@ -9,14 +10,25 @@ export const useShowProduct = (productId) => {
     id: -1,
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProduct = async () => {
-      const product = await callGetOneProduct(productId);
-      setProduct(product);
+      try {
+        const product = await callGetOneProduct(productId);
+        setProduct(product);
+      } catch (error) {
+        if (error.status && error.status === 404) {
+          navigate("/404");
+          return;
+        }
+
+        throw error;
+      }
     };
 
     fetchProduct();
-  }, [productId]);
+  }, [productId, navigate]);
 
   return { product, setProduct };
 };

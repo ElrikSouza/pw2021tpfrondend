@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { TOAST_STATES } from "../../components/toast/toast";
 import { useToast } from "../../components/toast/use-toast";
+import { useFileUpload } from "../../hooks/use-file-upload";
 import { useFormDisabled } from "../../hooks/use-form-disabled";
 import { useFormField } from "../../hooks/use-formfield";
 import { useResourceId } from "../../hooks/use-resource-id";
@@ -35,8 +37,8 @@ export const useEditProduct = () => {
     }
 
     nomeField.setValue(product.nome);
-    estoqueField.setValue(product.estoque);
-    precoField.setValue(product.preco);
+    estoqueField.setValue(Number.parseInt(product.estoque));
+    precoField.setValue(Number.parseFloat(product.preco));
     setDefaultValueSet(true);
   });
 
@@ -46,15 +48,25 @@ export const useEditProduct = () => {
     !precoField.isValid,
   ]);
 
-  const submit = async () => {
-    const changes = {
-      nome: nomeField.value,
-      estoque: estoqueField.value,
-      preco: precoField.value,
-    };
+  const { file: photo, onChange: onChangePhoto } = useFileUpload();
 
-    await callUpdateProduct(productId, changes);
-    navigate(`/products/${productId}`);
+  const submit = async () => {
+    try {
+      const changes = {
+        nome: nomeField.value,
+        estoque: estoqueField.value,
+        preco: precoField.value,
+      };
+
+      if (photo) {
+        changes["photo"] = photo;
+      }
+
+      await callUpdateProduct(productId, changes);
+      navigate(`/products/${productId}`);
+    } catch (error) {
+      toast.openToast(error.message, TOAST_STATES.ERROR);
+    }
   };
 
   return {
@@ -64,5 +76,7 @@ export const useEditProduct = () => {
     toast,
     submit,
     formDisabled,
+    photo,
+    onChangePhoto,
   };
 };

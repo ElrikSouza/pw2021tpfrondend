@@ -3,9 +3,9 @@
   width: 80%;
   margin: auto;
   gap: 1.25rem;
-  height: calc(100vh - var(--navbar-size));
   align-items: center;
   align-content: center;
+  padding: 1rem 0rem;
 }
 
 .form-layout--wide {

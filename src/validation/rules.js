@@ -24,7 +24,10 @@ export const minValueRule = (minValue, errorMsg) => {
 };
 
 export const isInt = (errorMsg) => {
-  return buildValidationRule((value) => Number.isInteger(value), errorMsg);
+  return buildValidationRule(
+    (value) => Number.isInteger(Number.parseInt(value)),
+    errorMsg
+  );
 };
 
 export const exactLength = (length, errorMsg) => {
