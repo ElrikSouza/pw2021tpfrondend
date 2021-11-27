@@ -10,14 +10,17 @@ import "./finish-order.css";
 
 export const FinishOrderPage = () => {
   const nav = useNavigate();
+
   const finishOrder = useFinishOrder();
+
   const productRows = finishOrder.products.map((product) => {
     return <ShoppingCartRow product={product} key={product.id} />;
   });
 
   return (
-    <FormLayout>
+    <FormLayout size="wide">
       <h1>Finalizar compra</h1>
+
       <div className="address-selector">
         {finishOrder.addresses.length !== 0 ? (
           <SelectInput

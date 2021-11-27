@@ -1,12 +1,18 @@
 .shopping-cart-row {
   display: grid;
-  grid-template-areas: "img nome quantidade preco";
   align-items: center;
   font-size: 1.15rem;
   align-content: center;
   max-width: 800px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  grid-template-areas: "img img img" "nome quantidade preco";
+}
+
+@media screen and (min-width: 700px) {
+  .shopping-cart-row {
+    grid-template-areas: "img nome quantidade preco";
+  }
 }
 
 .shopping-cart-row_img {

@@ -1,10 +1,17 @@
 .form-layout {
   display: grid;
   width: 80%;
-  max-width: 600px;
   margin: auto;
   gap: 1.25rem;
   height: calc(100vh - var(--navbar-size));
   align-items: center;
   align-content: center;
+}
+
+.form-layout--wide {
+  max-width: 800px;
+}
+
+.form-layout--normal {
+  max-width: 600px;
 }
