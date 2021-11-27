@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useLogout } from "../../hooks/use-logout";
 import { usePathnameSensitiveRole } from "./use-pathname-role";
+import { NavbarDrawer } from "./navbar-drawer";
+import { NavBarLinks } from "./navbar-links";
 import "./navbar.css";
 import { NavbarDrawer } from "./navbar-drawer";
 import { NavBarLinks } from "./navbar-links";
